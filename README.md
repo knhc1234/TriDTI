@@ -28,12 +28,12 @@ pip install rdkit==2024.9.5
 
 # Running code example
 
-### 1. Unzip the following files in the `/dataset/` directory:
-- `chemical_similarity_matrix.txt.gz` → `chemical_similarity_matrix.txt`
-- `drug_interaction_matrix.txt.gz` → `drug_interaction_matrix.txt`
-- `sideEffect_association_matrix.txt.gz` → `sideEffect_association_matrix.txt`
+### 1. Unzip the following files in the `/dataset/string_database` directory:
+- `filtered_protein_links.zip` → `filtered_protein_links.csv`
+- `protein_link.zip` → `protein_link.txt`
+- `protein_sequence.zip` → `protein_sequence.fa`
 
-### 2. Check the config file(`/FACT/configs/FACT.yaml`) to set the ATC level for prediction and configure the model hyperparameters.
+### 2. Check the config file(`/configs/{DAVIS, BIOSNAP, DrugBank}.yaml`) to set the ATC level for prediction and configure the model hyperparameters.
 The hyperparameters are defined as follows:
 - `level`: Specifies the ATC code level to be predicted (1-4).
 - `generate_new_negative_target`: Determines whether to generate new negative samples or use existing data (True/False).
@@ -48,9 +48,16 @@ The hyperparameters are defined as follows:
 - `learning_rate`: Learning rate for model optimization.
 - `adj_paths`:  Specifies the paths to the three drug similarity matrices. 
 
-### 3. Move to the `/FACT/examples/` directory and run `main.py` to start training.
+### 3. run `preprocessing.py` to make preprocessed data.
 ```
-python main.py
+python preprocessing.py
 ```
 
-### 4. The predicted results for each fold will be saved in the `/FACT/result/level{predicted level}/` directory.
+### 4. run 'main.py --config {DAVIS/BIOSNAP/DrugBank}.yaml to training model and get results.
+```
+python main.py --config DAVIS.yaml
+python main.py --config BIOSNAP.yaml
+python main.py --config DrugBank.yaml
+```
+
+### 5. The predicted results for each fold will be saved in the `/dataset/{DAVIS/BIOSNAP/DrugBank}_5fold/result` directory.
