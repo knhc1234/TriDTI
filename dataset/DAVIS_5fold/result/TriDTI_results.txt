@@ -1,0 +1,6 @@
+AUC(std):0.9391(0.0031)
+AUPR(std):0.7605(0.0114)
+F1 Score(std):0.7186(0.0100)
+Accuracy(std):0.9234(0.0014)
+Precision(std):0.7170(0.0224)
+Recall(std):0.7231(0.0407)
