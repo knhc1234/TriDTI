@@ -49,6 +49,7 @@ The hyperparameters are defined as follows:
 - `adj_paths`:  Specifies the paths to the three drug similarity matrices. 
 
 ### 3. run `preprocessing.py` to make preprocessed data.
+You can select the dataset you want to preprocess on line 71. (dataset_name = "DAVIS/BIOSNAP/DrugBank")
 ```
 python preprocessing.py
 ```
