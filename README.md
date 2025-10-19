@@ -3,7 +3,7 @@ The official code implementation for *TriDTI* from our paper, *"TriDTI: Tri-moda
 
 # Requirements
 
-- `python`=3.9
+- `python`=3.9.24
 - `pytorch`=2.1.0+cu121
 - `dgl`=2.0.0+cu121
 - `dgllife`
