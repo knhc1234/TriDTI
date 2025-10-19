@@ -33,7 +33,8 @@ pip install rdkit==2024.9.5
 - `protein_link.zip` → `protein_link.txt`
 - `protein_sequence.zip` → `protein_sequence.fa`
 
-### 2. Check the config file(`/configs/{DAVIS, BIOSNAP, DrugBank}.yaml`) to set the ATC level for prediction and configure the model hyperparameters.
+### 2. Check the config file(`/configs/{DATASET}.yaml`) to set the hyperparameters for the model specific to each dataset.
+The DATASET variable should be replaced by the name of the dataset being used, such as DAVIS, BIOSNAP, or DrugBank.
 The hyperparameters are defined as follows:
 - `MAX_ATOM_NODES`: Maximum number of atom nodes for padding drug graph inputs (Structural Feature).
 - `MAX_DRUG_NODES`: Maximum number of drug nodes for padding the drug relationship matrix (Relational Feature)
@@ -58,11 +59,11 @@ You can select the dataset you want to preprocess on line 71. (dataset_name = "D
 python preprocessing.py
 ```
 
-### 4. run 'main.py --config {DAVIS/BIOSNAP/DrugBank}.yaml to training model and get results.
+### 4. run 'main.py --config {DATASET}.yaml to training model and get results.
 ```
 python main.py --config DAVIS.yaml
 python main.py --config BIOSNAP.yaml
 python main.py --config DrugBank.yaml
 ```
 
-### 5. The predicted results for each fold will be saved in the `/dataset/{DAVIS/BIOSNAP/DrugBank}_5fold/result` directory.
+### 5. The predicted results for each fold will be saved in the `/dataset/{DATASET}_5fold/result` directory.
