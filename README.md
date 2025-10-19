@@ -35,18 +35,22 @@ pip install rdkit==2024.9.5
 
 ### 2. Check the config file(`/configs/{DAVIS, BIOSNAP, DrugBank}.yaml`) to set the ATC level for prediction and configure the model hyperparameters.
 The hyperparameters are defined as follows:
-- `level`: Specifies the ATC code level to be predicted (1-4).
-- `generate_new_negative_target`: Determines whether to generate new negative samples or use existing data (True/False).
-- `epochs`: Number of training epochs.
-- `early_stopping_count`: Criterion for applying early stopping.
-- `batch_size`: Batch size.
-- `num_layers`: Number of Transformer blocks in the CT Encoder.
-- `tr_hidden`: CNN output dimension and Transformer's hidden dimension.
-- `num_head`: Number of attention heads.
-- `ff_weight`: Ratio for the feed-forward neural network dimension in the Transformer.
-- `dropout`: Dropout rate.
-- `learning_rate`: Learning rate for model optimization.
-- `adj_paths`:  Specifies the paths to the three drug similarity matrices. 
+- `MAX_ATOM_NODES`: Maximum number of atom nodes for padding drug graph inputs (Structural Feature).
+- `MAX_DRUG_NODES`: Maximum number of drug nodes for padding the drug relationship matrix (Relational Feature)
+- `MAX_PROT_NODES`: Maximum number of protein nodes for padding the protein relationship matrix (Relational Feature)
+- `top_k_d`: The number of top neighbors *k* used in the Drug GATv2 layer to define relational links.
+- `top_k_t`: The number of top neighbors *k* used in the Target(Protein) GATv2 layer to define relational links.
+- `hidden_dim`: The hidden dimension used for the hidden layer within the projection layer and the intermediate layer of the MLP that performs the final prediction. 
+- `mol_dim`: The output embedding dimension of the ChemBERTa model for drug sequences (Sequential Feature).
+- `prot_dim`: The output embedding dimension of the ESM2 model for protein sequences (Sequential Feature).
+- `atom_dim`: The input feature dimension for molecular GIN (Graph Isomorphism Network) layers.
+- `graph_dim`: The hidden/output dimension of the GIN/Drug GATv2/Target GATv2 layers.
+- `conv_dim`: The output dimension of the Multi-scale CNN.
+- `proj_dim`: The output dimension of the projection layer used in the Modality Alignment (Contrastive Learning) step.
+- `LR`: The learning rate for the model optimizer (AdamW).
+- `EPOCHS`: The maximum number of training epochs.
+- `BATCH_SIZE`: The batch size used for training the model.
+- `pos_weight`: The weight applied to the positive class in the Binary Cross-Entropy Loss (used for handling imbalanced datasets).
 
 ### 3. run `preprocessing.py` to make preprocessed data.
 You can select the dataset you want to preprocess on line 71. (dataset_name = "DAVIS/BIOSNAP/DrugBank")
