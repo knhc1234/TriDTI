@@ -1,5 +1,5 @@
 # TriDTI
-The official code implementation for *TriDTI* from our paper, "TriDTI: Tri-modal Representation Learning with Cross-Modal Alignment for Drug-Target Interaction Prediction". 
+The official code implementation for *TriDTI* from our paper, *"TriDTI: Tri-modal Representation Learning with Cross-Modal Alignment for Drug-Target Interaction Prediction"*. 
 
 # Requirements
 
