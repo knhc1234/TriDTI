@@ -1,0 +1,54 @@
+brotlicffi @ file:///C:/b/abs_f4lixvzmxt/croot/brotlicffi_1736183286104/work
+certifi @ file:///C:/miniconda3/conda-bld/certifi_1759786080784/work/certifi
+cffi @ file:///C:/miniconda3/conda-bld/cffi_1760098049787/work
+charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
+cloudpickle==3.1.1
+colorama @ file:///C:/b/abs_a9ozq0l032/croot/colorama_1672387194846/work
+dgl==2.0.0+cu121
+dgllife==0.3.2
+fair-esm==2.0.0
+filelock @ file:///C:/b/abs_758187j281/croot/filelock_1744281404850/work
+fsspec==2025.9.0
+future==1.0.0
+gmpy2 @ file:///C:/b/abs_d8ki0o0h97/croot/gmpy2_1738085498525/work
+huggingface-hub==0.35.3
+hyperopt==0.2.7
+idna @ file:///C:/b/abs_aad84bnnw5/croot/idna_1714398896795/work
+Jinja2 @ file:///C:/b/abs_920kup4e6u/croot/jinja2_1741711580669/work
+joblib==1.5.2
+MarkupSafe @ file:///C:/b/abs_a0ma7ge0jc/croot/markupsafe_1738584052792/work
+mkl-service==2.4.0
+mkl_fft @ file:///C:/Users/dev-admin/mkl/mkl_fft_1730823082242/work
+mkl_random @ file:///C:/Users/dev-admin/mkl/mkl_random_1730822522280/work
+mpmath @ file:///C:/b/abs_7833jrbiox/croot/mpmath_1690848321154/work
+networkx @ file:///C:/b/abs_3bxnu56g9d/croot/networkx_1717597507456/work
+numpy==1.26.3
+packaging==25.0
+pandas==2.3.3
+pillow @ file:///C:/b/abs_b50vowcrzo/croot/pillow_1738010273782/work
+psutil @ file:///C:/miniconda3/conda-bld/psutil_1757104556278/work
+py4j==0.10.9.9
+pycparser @ file:///C:/miniconda3/conda-bld/pycparser_1757496061107/work
+PySocks @ file:///C:/ci/pysocks_1605307512533/work
+python-dateutil==2.9.0.post0
+pytz==2025.2
+PyYAML @ file:///C:/b/abs_14xkfs39bx/croot/pyyaml_1728657968772/work
+rdkit==2024.9.5
+regex==2025.9.18
+requests @ file:///C:/b/abs_f53smfvswb/croot/requests_1756709376206/work
+safetensors==0.6.2
+scikit-learn==1.6.1
+scipy @ file:///C:/Users/dev-admin/cr_scipy-feedstock/scipy_1733774324044/work/dist/scipy-1.13.1-cp39-cp39-win_amd64.whl#sha256=f7218697f964ae4372cdcb6f20a05db0d338ccc574c96e9dbf235ed6547dd462
+six==1.17.0
+sympy @ file:///C:/b/abs_f1v7nwa6vp/croot/sympy_1756713483242/work
+threadpoolctl==3.6.0
+tokenizers==0.21.4
+torch==2.1.0
+torchaudio==2.1.0
+torchvision==0.16.0
+tqdm @ file:///C:/b/abs_0eh9b6xugj/croot/tqdm_1738945553987/work
+transformers==4.50.1
+typing_extensions @ file:///C:/b/abs_ecq8gc0vbm/croot/typing_extensions_1756281142218/work
+tzdata==2025.2
+urllib3 @ file:///C:/b/abs_393g1ayee_/croot/urllib3_1750775481226/work
+win-inet-pton @ file:///C:/ci/win_inet_pton_1605306162074/work
