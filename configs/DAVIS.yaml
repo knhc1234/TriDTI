@@ -1,0 +1,17 @@
+DATASET_NAME: "DAVIS_5fold"
+MAX_ATOM_NODES: 46
+MAX_DRUG_NODES: 68
+MAX_PROT_NODES: 379
+top_k_d: 5
+top_k_t: 30
+hidden_dim: 128
+mol_dim: 768
+prot_dim: 1280
+atom_dim: 79
+graph_dim: 128
+conv_dim: 128
+proj_dim: 128
+LR: 0.0005
+EPOCHS: 100
+BATCH_SIZE: 16
+pos_weight: 6.37

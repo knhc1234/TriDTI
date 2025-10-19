@@ -1,0 +1,17 @@
+DATASET_NAME: "DrugBank_5fold"
+MAX_ATOM_NODES: 551
+MAX_DRUG_NODES: 1470
+MAX_PROT_NODES: 4254
+top_k_d: 30
+top_k_t: 100
+hidden_dim: 256
+mol_dim: 768
+prot_dim: 1280
+atom_dim: 79
+graph_dim: 64
+conv_dim: 64
+proj_dim: 64
+LR: 0.0005
+EPOCHS: 100
+BATCH_SIZE: 16
+pos_weight: 1
