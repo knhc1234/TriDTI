@@ -18,7 +18,7 @@ The official code implementation for *TriDTI* from our paper, *"TriDTI: Tri-moda
 conda create -n TriDTI python=3.9
 conda activate TriDTI
 conda install pytorch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 pytorch-cuda=12.1 -c pytorch -c nvidia
-conda install -c dglteam/label/cu121 dgl
+conda install -c dglteam/label/th21_cu121 dgl
 pip install dgllife
 pip install numpy==1.26.3
 pip install transformers==4.50.1
