@@ -51,20 +51,6 @@ pip install transformers==4.50.1
 pip install fair-esm
 pip install rdkit==2024.9.5
 
-# Virtual Environment Setup (using anaconda)
-
-```
-conda create -n TriDTI python=3.9
-conda activate TriDTI
-conda install pytorch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 pytorch-cuda=12.1 -c pytorch -c nvidia
-conda install -c dglteam/label/th21_cu121 dgl
-pip install dgllife
-pip install numpy==1.26.3
-pip install transformers==4.50.1
-pip install fair-esm
-pip install rdkit==2024.9.5
-```
-
 # Running code example
 
 ### 1. Unzip the following files in the `/dataset/string_database` directory:
