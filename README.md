@@ -54,42 +54,56 @@ pip install rdkit==2024.9.5
 
 # Running code example
 
-### 1. Unzip the following files in the `/dataset/string_database` directory:
+### 1. Prepare Raw Data
+
+Unzip the following files in the `/dataset/string_database` directory:
 - `filtered_protein_links.zip` → `filtered_protein_links.csv`
 - `protein_link.zip` → `protein_link.txt`
 - `protein_sequence.zip` → `protein_sequence.fa`
 
-### 2. Check the config file(`/configs/{DATASET}.yaml`) to set the hyperparameters for the model specific to each dataset.
-The DATASET variable should be replaced by the name of the dataset being used, such as DAVIS, BIOSNAP, or DrugBank.
-The hyperparameters are defined as follows:
-- `MAX_ATOM_NODES`: Maximum number of atom nodes for padding drug graph inputs (Structural Feature).
-- `MAX_DRUG_NODES`: Maximum number of drug nodes for padding the drug relationship matrix (Relational Feature)
-- `MAX_PROT_NODES`: Maximum number of protein nodes for padding the protein relationship matrix (Relational Feature)
-- `top_k_d`: The number of top neighbors *k* used in the Drug GATv2 layer to define relational links.
-- `top_k_t`: The number of top neighbors *k* used in the Target(Protein) GATv2 layer to define relational links.
-- `hidden_dim`: The hidden dimension used for the hidden layer within the projection layer and the intermediate layer of the MLP that performs the final prediction. 
-- `mol_dim`: The output embedding dimension of the ChemBERTa model for drug sequences (Sequential Feature).
-- `prot_dim`: The output embedding dimension of the ESM2 model for protein sequences (Sequential Feature).
-- `atom_dim`: The input feature dimension for molecular GIN (Graph Isomorphism Network) layers.
-- `graph_dim`: The hidden/output dimension of the GIN/Drug GATv2/Target GATv2 layers.
-- `conv_dim`: The output dimension of the Multi-scale CNN.
-- `proj_dim`: The output dimension of the projection layer used in the Modality Alignment (Contrastive Learning) step.
-- `LR`: The learning rate for the model optimizer (AdamW).
-- `EPOCHS`: The maximum number of training epochs.
-- `BATCH_SIZE`: The batch size used for training the model.
-- `pos_weight`: The weight applied to the positive class in the Binary Cross-Entropy Loss (used for handling imbalanced datasets).
+### 2. Run Preprocessing (`preprocessing.py`)
 
-### 3. run `preprocessing.py` to make preprocessed data.
+Run `preprocessing.py` to perform **initial data preparation** and **static feature generation**.
+
+**This script generates the core feature files for the entire dataset:**
+
+* **Sequential Features:**
+    * Drug sequence embeddings (`drug_embeddings.npy`)
+    * Target sequence embeddings (`protein_embeddings.npy`)
+    * Corresponding SMILES codes (`drug_smiles.npy`)
+    * Target protein sequences (`protein_sequences.npy`)
+* **Relational Features (Global Graphs):**
+    * Drug-Drug Similarity Matrix (`drug_similarity_matrix.csv`, based on sequence embeddings)
+    * STRING PPI Matrix (`ppi_similarity.csv`, containing combined scores for all targets in the dataset)
+    * Mapping files for unique Drug and Protein IDs.
+
 You can select the dataset you want to preprocess on line 71. (dataset_name = "DAVIS/BIOSNAP/DrugBank")
-```
+```bash
 python preprocessing.py
 ```
 
-### 4. run 'main.py --config {DATASET}.yaml to training model and get results.
+### 3. Run Training (`main.py`)
+Run 'main.py --config {DATASET}.yaml to strat the training process. The model automatically performs the remaining data structuring steps.
+
+** 3.1 Dynamic Graph Construction & Data Loading
+The data loader component (```./utils/data.py```) handles the full preparation of tri-modal inputs:
+*** 1. Global Relational Graph Caching:
+    * The Drug-Drug Similarity Matrix and STRING PPI Matrix (from step 2) are used to construct sparse, $top\_k$ based Global Relational Graphs (Drug-Drug Graph and Target-Target Graph).
+    * These global graphs are created only once per dataset and saved as binary files (```drug_graph.bin, string_graph.bin```) for subsequent automatic loading.
+*** 2. Sample-Specific Input Generation:
+    * For each DTI pair, the three required feature types are generated:
+    ** Structural Feature: The Molecular Graph is generated on-the-fly from the SMILES string (using RDKit/DGL) and padded to ```MAX_ATOM_NODES```.
+    ** Relational Features (Subgraphs): $k$-hop neighborhoods centered around the current drug/target are extracted (subsampled) from the cached Global Relational Graphs and padded to ```MAX_DRUG_NODES``` and ```MAX_PROT_NODES```.
+    ** Sequential Features: Sequence embeddings and sequence encoding are fetched.
+
+3.2. Execution
+Check the configuration details in ```/configs/README.md``` before execution.
+
 ```
 python main.py --config DAVIS.yaml
 python main.py --config BIOSNAP.yaml
 python main.py --config DrugBank.yaml
 ```
 
-### 5. The predicted results for each fold will be saved in the `/dataset/{DATASET}_5fold/result` directory.
+### 4. Results
+The predicted results for each fold will be saved in the `/dataset/{DATASET}_5fold/result` directory.
