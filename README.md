@@ -7,6 +7,7 @@ The official code implementation for *TriDTI* from our paper, *"TriDTI: Tri-moda
 The recommended environment uses **Python 3.9** and **CUDA 12.1** compatible libraries.
 
 **A. Using `requirements.txt` (Recommended)**
+
 A `requirements.txt` file has been created to simplify dependency installation.
 
 1.  **Create a virtual environment (e.g., using `conda`):**
