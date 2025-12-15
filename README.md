@@ -3,6 +3,26 @@ The official code implementation for *TriDTI* from our paper, *"TriDTI: Tri-moda
 
 # Requirements
 
+## 1. Environment Setup (Recommended)
+The recommended environment uses **Python 3.9** and **CUDA 12.1** compatible libraries.
+
+**A. Using `requirements.txt` (Recommended)**
+A `requirements.txt` file has been created to simplify dependency installation.
+
+1.  **Create a virtual environment (e.g., using `conda`):**
+    ```bash
+    conda create -n TriDTI python=3.9
+    conda activate TriDTI
+    ```
+    
+2.  **Install dependencies from `requirements.txt`:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+    (Note: This file contains the versions specified below, including PyTorch and DGL, which should install CUDA 12.1 compatible versions automatically if a suitable GPU/environment is detected.)
+
+**B. Alternative/Manual Setup**
+If the `requirements.txt` method fails to install the correct CUDA-enabled versions (especially for PyTorch and DGL), please use the following detailed steps:
 - `python`=3.9.24
 - `pytorch`=2.1.0+cu121
 - `dgl`=2.0.0+cu121
@@ -11,7 +31,25 @@ The official code implementation for *TriDTI* from our paper, *"TriDTI: Tri-moda
 - `transformers`=4.50.1
 - `fair-esm`
 - `rdkit`=2024.9.5
-  
+
+```bash
+# 1. Create and activate environment
+conda create -n TriDTI python=3.9
+conda activate TriDTI
+
+# 2. Install PyTorch (ensure CUDA 12.1 compatibility)
+conda install pytorch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 pytorch-cuda=12.1 -c pytorch -c nvidia
+
+# 3. Install DGL (ensure CUDA 12.1 compatibility)
+conda install -c dglteam/label/th21_cu121 dgl
+
+# 4. Install remaining dependencies
+pip install dgllife
+pip install numpy==1.26.3
+pip install transformers==4.50.1
+pip install fair-esm
+pip install rdkit==2024.9.5
+
 # Virtual Environment Setup (using anaconda)
 
 ```
