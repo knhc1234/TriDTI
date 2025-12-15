@@ -50,6 +50,7 @@ pip install numpy==1.26.3
 pip install transformers==4.50.1
 pip install fair-esm
 pip install rdkit==2024.9.5
+```
 
 # Running code example
 
