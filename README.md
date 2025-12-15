@@ -85,16 +85,16 @@ python preprocessing.py
 ### 3. Run Training (`main.py`)
 Run 'main.py --config {DATASET}.yaml to strat the training process. The model automatically performs the remaining data structuring steps.
 
-** 3.1 Dynamic Graph Construction & Data Loading
+**3.1 Dynamic Graph Construction & Data Loading
 The data loader component (```./utils/data.py```) handles the full preparation of tri-modal inputs:
-*** 1. Global Relational Graph Caching:
-    * The Drug-Drug Similarity Matrix and STRING PPI Matrix (from step 2) are used to construct sparse, $top\_k$ based Global Relational Graphs (Drug-Drug Graph and Target-Target Graph).
-    * These global graphs are created only once per dataset and saved as binary files (```drug_graph.bin, string_graph.bin```) for subsequent automatic loading.
-*** 2. Sample-Specific Input Generation:
-    * For each DTI pair, the three required feature types are generated:
-    ** Structural Feature: The Molecular Graph is generated on-the-fly from the SMILES string (using RDKit/DGL) and padded to ```MAX_ATOM_NODES```.
-    ** Relational Features (Subgraphs): $k$-hop neighborhoods centered around the current drug/target are extracted (subsampled) from the cached Global Relational Graphs and padded to ```MAX_DRUG_NODES``` and ```MAX_PROT_NODES```.
-    ** Sequential Features: Sequence embeddings and sequence encoding are fetched.
+    *1. Global Relational Graph Caching:
+    *The Drug-Drug Similarity Matrix and STRING PPI Matrix (from step 2) are used to construct sparse, $top\_k$ based Global Relational Graphs (Drug-Drug Graph and Target-Target Graph).
+    *These global graphs are created only once per dataset and saved as binary files (```drug_graph.bin, string_graph.bin```) for subsequent automatic loading.
+    *2. Sample-Specific Input Generation:
+    *For each DTI pair, the three required feature types are generated:
+    *Structural Feature: The Molecular Graph is generated on-the-fly from the SMILES string (using RDKit/DGL) and padded to ```MAX_ATOM_NODES```.
+    *Relational Features (Subgraphs): $k$-hop neighborhoods centered around the current drug/target are extracted (subsampled) from the cached Global Relational Graphs and padded to ```MAX_DRUG_NODES``` and ```MAX_PROT_NODES```.
+    *Sequential Features: Sequence embeddings and sequence encoding are fetched.
 
 3.2. Execution
 Check the configuration details in ```/configs/README.md``` before execution.
