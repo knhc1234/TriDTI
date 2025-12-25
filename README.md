@@ -65,6 +65,17 @@ Unzip the following files in the `/dataset/string_database` directory:
 - `protein_link.zip` → `protein_link.txt`
 - `protein_sequence.zip` → `protein_sequence.fa`
 
+#### **Original Data Acquisition**
+The raw datasets used in this project were retrieved from **[STRING DB v10.5](https://version-10-5.string-db.org/cgi/download.pl?sessionId=pDsfEaLjmG7g)**. Specifically, the following files were used:
+- **protein_link.txt**: Extracted from `protein.links.v10.5.txt.gz`.
+- **protein_sequence.fa**: Extracted from `protein.sequences.v10.5.fa.gz`.
+
+#### **Data Filtering Process**
+The original `protein_link.txt` from STRING DB includes bidirectional entries for every interaction (e.g., listing both A→B and B→A), which significantly increases the raw file size.
+
+- **Storage Optimization:** To optimize storage and loading speed, we use **`filtered_protein_links.csv`**, which contains only one entry per unique interaction, effectively halving the file size without losing information.
+- **Bidirectional Graph Construction:** During the initial graph generation process in **`utils/data.py`**, the code is designed to consider both directions to reconstruct the full protein interaction network. Therefore, using the filtered file does not affect the model's performance or the integrity of the graph structure.
+
 ### 2. Run Preprocessing (`preprocessing.py`)
 
 Run `preprocessing.py` to perform **initial data preparation** and **static feature generation**.
