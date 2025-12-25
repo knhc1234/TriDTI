@@ -21,7 +21,7 @@ import gc
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Load configuration from YAML file.")
-    parser.add_argument("--config", type=str, default="BindingDB.yaml", help="Path to the config YAML file")
+    parser.add_argument("--config", type=str, default="DAVIS.yaml", help="Path to the config YAML file")
     args = parser.parse_args()
     return args
 
