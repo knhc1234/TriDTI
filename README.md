@@ -26,12 +26,14 @@ A `requirements.txt` file has been created to simplify dependency installation.
 If the `requirements.txt` method fails to install the correct CUDA-enabled versions (especially for PyTorch and DGL), please use the following detailed steps:
 - `python`=3.9.24
 - `pytorch`=2.1.0+cu121
-- `dgl`=2.0.0+cu121
-- `dgllife`
+- `dgl`=2.2.1+cu121
+- `dgllife`=0.3.2
 - `numpy`=1.26.3
 - `transformers`=4.50.1
-- `fair-esm`
+- `fair-esm`=2.0.0
 - `rdkit`=2024.9.5
+- `torchdata`=0.7.0
+- `pydantic`=2.12.5
 
 ```bash
 # 1. Create and activate environment
@@ -39,10 +41,10 @@ conda create -n TriDTI python=3.9
 conda activate TriDTI
 
 # 2. Install PyTorch (ensure CUDA 12.1 compatibility)
-conda install pytorch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 pytorch-cuda=12.1 -c pytorch -c nvidia
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
 
 # 3. Install DGL (ensure CUDA 12.1 compatibility)
-conda install -c dglteam/label/th21_cu121 dgl
+pip install  dgl -f https://data.dgl.ai/wheels/cu121/repo.html
 
 # 4. Install remaining dependencies
 pip install dgllife
@@ -50,13 +52,15 @@ pip install numpy==1.26.3
 pip install transformers==4.50.1
 pip install fair-esm
 pip install rdkit==2024.9.5
+pip install torchdata==0.7.0
+pip install pydantic==2.12.5
 ```
 
 # Running code example
 
 ### 1. Prepare Raw Data
 
-Unzip the following files in the `/dataset/string_database` directory:
+Unzip the following files in the `/dataset/string_database` directory:    
 - `filtered_protein_links.zip` → `filtered_protein_links.csv`
 - `protein_link.zip` → `protein_link.txt`
 - `protein_sequence.zip` → `protein_sequence.fa`
